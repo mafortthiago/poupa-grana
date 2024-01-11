@@ -1,0 +1,84 @@
+@import "../variables.scss";
+.menu {
+  display: flex;
+  cursor: pointer;
+
+  align-items: end;
+  justify-content: center;
+  flex-direction: column;
+  width: 40px;
+  height: 40px;
+  .menu-item {
+    background-color: $color-first;
+    border-radius: 1rem;
+    height: 4px;
+    margin: 2px 0;
+  }
+  .mni1 {
+    width: 90%;
+  }
+  .mni2 {
+    width: 76%;
+  }
+  .mni3 {
+    width: 63%;
+  }
+  @media (min-width: 600px) {
+    display: none;
+  }
+}
+nav {
+  text-align: center;
+  margin-top: 8rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: $color-first;
+  position: absolute;
+  padding: 10rem 2rem;
+  right: -200px;
+  @media (min-width: 600px) {
+    display: inline;
+    background-color: transparent;
+    flex-direction: row;
+    padding: 0;
+    margin-top: 0;
+    right: 10px;
+  }
+  .link-nav {
+    color: $color-third;
+    @media (min-width: 600px) {
+      color: $text-color;
+      margin-right: 1rem;
+    }
+    margin-top: 1rem;
+  }
+  .close-menu {
+    color: $color-third;
+    @media (min-width: 600px) {
+      display: none;
+    }
+    font-weight: bold;
+    font-size: 2rem;
+    cursor: pointer;
+  }
+  .link-nav:hover,
+  .close-menu:hover {
+    filter: brightness(1.2);
+    @media (min-width: 600px) {
+      color: $color-first;
+    }
+  }
+}
+.nav-mobile {
+  right: 0;
+  animation: anima-menu 0.5s ease-in-out;
+}
+@keyframes anima-menu {
+  0% {
+    right: -200px;
+  }
+  100% {
+    right: 0;
+  }
+}

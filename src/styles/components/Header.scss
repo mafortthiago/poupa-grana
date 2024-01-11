@@ -1,0 +1,25 @@
+@import "../variables.scss";
+header {
+  background-color: $color-third;
+  display: flex;
+  justify-content: space-between;
+
+  padding: 1rem;
+  align-items: center;
+  a {
+    text-decoration: none;
+    h1 {
+      display: flex;
+      align-items: center;
+      font-size: 1.2rem;
+    }
+    h1:hover {
+      filter: brightness(1.2);
+      color: $color-first;
+    }
+  }
+  img {
+    width: 50px;
+    margin-right: 1rem;
+  }
+}
