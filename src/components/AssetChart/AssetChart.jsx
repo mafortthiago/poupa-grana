@@ -46,7 +46,7 @@ export const AssetChart = () => {
     <>
       <div className="asset_chart">
         <h4 className="titleChart">Sua jornada economizando:</h4>
-        <Chart options={options} series={series} type="area" height={350} />
+        <Chart options={options} series={series} type="area" height={380} />
       </div>
     </>
   );

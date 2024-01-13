@@ -7,7 +7,8 @@ main {
   grid-template-areas:
     "moneyValue"
     "chart"
-    "analyst";
+    "analyst"
+    "mark";
 
   @media (min-width: 768px) {
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -16,7 +17,7 @@ main {
     grid-template-areas:
       "moneyValue chart chart chart"
       "analyst chart chart chart "
-      "analyst chart chart chart";
+      "mark chart chart chart";
   }
   .money-value {
     margin: 1rem;
@@ -62,6 +63,33 @@ main {
     }
     .losses_img {
       transform: rotate(180deg);
+    }
+  }
+  .mark {
+    padding: 1rem;
+    grid-area: mark;
+    .mark_content {
+      padding: 1rem;
+      .progress {
+        width: 100%;
+        border-radius: 0.2rem;
+        background-color: $color-third;
+        .progress_bar {
+          width: 66%;
+          border-radius: 0.2rem;
+          display: flex;
+          justify-content: center;
+          background-color: $color-second;
+          color: $color-white;
+        }
+      }
+    }
+    h5 {
+      margin-top: 0.2rem;
+      span {
+        font-weight: 600;
+        margin-left: 0.3rem;
+      }
     }
   }
 }

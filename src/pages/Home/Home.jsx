@@ -42,6 +42,25 @@ export const Home = () => {
           </div>
         </div>
       </section>
+      <section className="mark">
+        <h4>Meta</h4>
+        <hr />
+        <div className="mark_content">
+          <h5>Progresso</h5>
+          <div className="progress">
+            <div className="progress_bar">{66 + "%"}</div>
+          </div>
+          <h5>
+            Economia desejada: <span>R${1000}</span>
+          </h5>
+          <h5>
+            Quantia economizada: <span>R${660}</span>
+          </h5>
+          <h5>
+            Faltam: <span>R${340}</span>
+          </h5>
+        </div>
+      </section>
     </main>
   );
 };
