@@ -28,11 +28,13 @@
   }
 }
 nav {
+  overflow-x: hidden;
   text-align: center;
   margin-top: 8rem;
   display: flex;
   align-items: center;
   flex-direction: column;
+  z-index: 100;
   background-color: $color-first;
   position: absolute;
   padding: 10rem 2rem;

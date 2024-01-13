@@ -15,6 +15,9 @@ export const Navbar = () => {
           x
         </span>
         <NavLink className="link-nav" to="/Entrada">
+          Home
+        </NavLink>
+        <NavLink className="link-nav" to="/Entrada">
           Inserir Entrada
         </NavLink>
         <NavLink className="link-nav" to="/Saída">

@@ -1,0 +1,10 @@
+@import "../variables.scss";
+.asset_chart {
+  margin: 1rem auto;
+  width: 96%;
+  grid-area: chart;
+}
+.titleChart {
+  margin: 0 auto;
+  padding-left: 1rem;
+}

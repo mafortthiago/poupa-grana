@@ -1,0 +1,67 @@
+@import "../variables.scss";
+main {
+  background-color: $color-white;
+  display: grid;
+  gap: 0px 0px;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "moneyValue"
+    "chart"
+    "analyst";
+
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+
+    gap: 0px 0px;
+    grid-template-areas:
+      "moneyValue chart chart chart"
+      "analyst chart chart chart "
+      "analyst chart chart chart";
+  }
+  .money-value {
+    margin: 1rem;
+    border-radius: 1rem;
+    grid-area: moneyValue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    h3 {
+      font-size: 1.1rem;
+    }
+    span {
+      background-color: $color-white;
+      -webkit-box-shadow: 10px 10px 38px -6px rgba(0, 0, 0, 0.75);
+      -moz-box-shadow: 10px 10px 38px -6px rgba(0, 0, 0, 0.75);
+      box-shadow: 10px 10px 38px -6px rgba(0, 0, 0, 0.75);
+      padding: 0.2rem;
+      border-radius: 0.3rem;
+    }
+    p {
+      margin-top: 0.3rem;
+    }
+  }
+  .chart {
+    padding: 20rem;
+    grid-area: chart;
+  }
+  .analyst {
+    grid-area: analyst;
+    padding: 0 1rem;
+    .analyst_content {
+      padding: 1rem;
+    }
+    .losses {
+      margin-top: 0.3rem;
+    }
+    h5 {
+      display: flex;
+    }
+    img {
+      width: 20px;
+    }
+    .losses_img {
+      transform: rotate(180deg);
+    }
+  }
+}
