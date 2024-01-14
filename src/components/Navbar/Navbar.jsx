@@ -14,7 +14,7 @@ export const Navbar = () => {
         <span className="close-menu" onClick={() => setMenuActive(false)}>
           x
         </span>
-        <NavLink className="link-nav" to="/Entrada">
+        <NavLink className="link-nav" to="/">
           Home
         </NavLink>
         <NavLink className="link-nav" to="/Entrada">

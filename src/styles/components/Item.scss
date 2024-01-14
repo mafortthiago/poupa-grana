@@ -1,0 +1,32 @@
+@import "../variables.scss";
+.item {
+  background-color: $color-third;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.8rem;
+  border-radius: 0.2rem;
+  border: 1px solid $color-first;
+  padding: 0.2rem;
+
+  justify-content: space-around;
+  align-items: center;
+  span {
+    margin-right: 1rem;
+  }
+  img {
+    width: 20px;
+    display: flex;
+    align-items: center;
+  }
+  .edit {
+    width: 18px;
+  }
+  .delete {
+    width: 23px;
+  }
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+}

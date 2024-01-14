@@ -3,6 +3,7 @@ import { Header } from "./components/Header/Header";
 import { Home } from "./pages/Home/Home";
 import { InsertEntry } from "./pages/InsertEntry/InsertEntry";
 import { InsertExit } from "./pages/InsertExit/InsertExit";
+import { Gestor } from "./pages/Gestor/Gestor";
 import "./App.scss";
 
 function App() {
@@ -11,8 +12,8 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
+          <Route path={"/Gestor"} element={<Gestor />} />
           <Route path={"/"} element={<Home />} />
-          <Route path={"/Gestor"} element={<Home />} />
           <Route path={"/Entrada"} element={<InsertEntry />} />
           <Route path={"/Saída"} element={<InsertExit />} />
         </Routes>

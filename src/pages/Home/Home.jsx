@@ -5,7 +5,7 @@ import imgExit from "../../assets/img/exit.png";
 import { AssetChart } from "../../components/AssetChart/AssetChart";
 export const Home = () => {
   return (
-    <main>
+    <main className="home">
       <section className="money-value">
         <h3>Dinheiro guardado:</h3>
         <span>R$: 18,08</span>

@@ -1,5 +1,5 @@
 @import "../variables.scss";
-main {
+.home {
   background-color: $color-white;
   display: grid;
   gap: 0px 0px;
@@ -66,7 +66,7 @@ main {
     }
   }
   .mark {
-    padding: 1rem;
+    padding: 0 1rem;
     grid-area: mark;
     .mark_content {
       padding: 1rem;
