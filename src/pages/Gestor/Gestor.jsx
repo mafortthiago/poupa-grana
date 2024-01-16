@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { Item } from "../../components/Item/Item";
 import "../../styles/pages/Gestor.scss";
-import imgEntry from "../../assets/img/entry.png";
+import { InsertEntry } from "../../components/InsertEntry/InsertEntry";
 import imgExit from "../../assets/img/exit.png";
 export const Gestor = () => {
+  const [isInsertEntry, setIsInsertEntry] = useState(false);
+
   const item1 = {
     name: "Conta de água",
     value: 160.9,
@@ -12,8 +14,8 @@ export const Gestor = () => {
   return (
     <main className="gestor">
       <div className="btns">
-        <button className="btn_entry">
-          <img src={imgEntry} alt="" />
+        <button className="btn_entry" onClick={() => setIsInsertEntry(true)}>
+          <img src={imgExit} alt="" />
           Inserir entrada
         </button>
         <button className="btn_exit">
@@ -26,6 +28,7 @@ export const Gestor = () => {
         <h4>Movimentações</h4>
         <Item item={item1} />
       </section>
+      {isInsertEntry && <InsertEntry setIsInsertEntry={setIsInsertEntry} />}
     </main>
   );
 };

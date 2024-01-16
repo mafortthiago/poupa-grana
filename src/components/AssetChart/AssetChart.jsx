@@ -25,10 +25,10 @@ export const AssetChart = () => {
       ],
     },
     fill: {
-      colors: ["#723d46"],
+      colors: ["#242038"],
     },
     stroke: {
-      colors: ["#723d46"],
+      colors: ["#242038"],
     },
     tooltip: {
       x: {

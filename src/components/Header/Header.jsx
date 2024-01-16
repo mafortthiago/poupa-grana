@@ -8,7 +8,7 @@ export const Header = () => {
     <header className="header">
       <Link to={"/"}>
         <h1>
-          <img src={Logo} alt="Logo do site" />
+          {/* <img src={Logo} alt="Logo do site" /> */}
           Poupa Grana
         </h1>
       </Link>

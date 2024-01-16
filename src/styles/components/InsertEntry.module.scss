@@ -1,0 +1,177 @@
+@import "../variables.scss";
+
+.insert {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.2);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1001;
+  display: flex;
+
+  justify-content: center;
+  hr {
+    border-color: $color-second;
+    margin: 0.1rem 0 0.5rem 0;
+  }
+  .modal_insert {
+    margin-top: 120px;
+    padding: 1rem;
+    width: 80%;
+    height: fit-content;
+    background-color: $color-white;
+    border-radius: 1rem;
+    -webkit-box-shadow: 10px 10px 38px -6px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 38px -6px rgba(0, 0, 0, 0.75);
+    box-shadow: 10px 10px 38px -6px rgba(0, 0, 0, 0.75);
+    @media (min-width: 425px) {
+      width: 340px;
+    }
+    h4 {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .go_back {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+  .form {
+    display: flex;
+    flex-direction: column;
+    input {
+      border: 1px solid $color-first;
+      border-radius: 0.3rem;
+      padding: 0.2rem 0.4rem;
+    }
+    .buttons_add_value {
+      display: flex;
+
+      gap: 0.1rem;
+      padding: 0.3rem 0;
+      button {
+        background-color: $color-third;
+        color: $text-color;
+        border: 1px solid $color-first;
+        font-weight: 500;
+      }
+    }
+    .date {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      .radio {
+        appearance: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background-color: $color-second;
+        border: 1px solid $color-third;
+      }
+      .radio::before {
+        content: "";
+        background-color: $color-third;
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        opacity: 0;
+      }
+      .radio:checked::before {
+        opacity: 1;
+      }
+      label {
+        margin: 0 0.6rem 0 0.2rem;
+        font-size: 0.8rem;
+      }
+      .input_date:disabled {
+        opacity: 0.5;
+      }
+    }
+    .label_select {
+      background-color: $color-second;
+      display: flex;
+      align-items: center;
+      margin-top: 0.8rem;
+      cursor: pointer;
+      padding: 0.2rem;
+      justify-content: center;
+      border-radius: 0.3rem;
+      position: relative;
+      .selector {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+      }
+      .img_select {
+        width: 20px;
+        transform: rotate(180deg);
+      }
+      .input_other_type {
+        padding: 0.3rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0.2rem 0 0.4rem 0;
+        label {
+          margin-right: 0.2rem;
+        }
+      }
+      .noRotate {
+        transform: none;
+      }
+    }
+
+    .options {
+      width: 100%;
+      border-radius: 0.3rem;
+      text-align: center;
+      background-color: $color-second;
+      position: absolute;
+      top: 36px;
+      p:hover {
+        background-color: $color-third;
+        border-radius: 0.3rem;
+      }
+      .otherType {
+        background-color: $color-second;
+      }
+      .otherTypeBtn {
+        margin-left: 0.1rem;
+        background-color: $color-third;
+        color: $color-white;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      .paragraph_other_type {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+    .none {
+      display: none;
+    }
+    .btn_insert {
+      cursor: pointer;
+      background-color: $color-third;
+      border: 1px solid $color-first;
+      margin-top: 0.3rem;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+    .btn_insert:hover {
+      filter: brightness(1.15);
+      transition: 0.4s ease-in all;
+    }
+  }
+}

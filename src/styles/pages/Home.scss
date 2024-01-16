@@ -73,14 +73,14 @@
       .progress {
         width: 100%;
         border-radius: 0.2rem;
-        background-color: $color-third;
+        background-color: $color-second;
         .progress_bar {
           width: 66%;
           border-radius: 0.2rem;
           display: flex;
           justify-content: center;
-          background-color: $color-second;
-          color: $color-white;
+          background-color: $color-third;
+          color: $text-color;
         }
       }
     }

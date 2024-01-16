@@ -1,6 +1,6 @@
 @import "../variables.scss";
 .item {
-  background-color: $color-third;
+  background-color: $color-second;
   display: flex;
   flex-direction: column;
   font-size: 0.8rem;
@@ -20,9 +20,11 @@
   }
   .edit {
     width: 18px;
+    cursor: pointer;
   }
   .delete {
     width: 23px;
+    cursor: pointer;
   }
   div {
     display: flex;
