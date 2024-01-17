@@ -42,6 +42,15 @@
   .form {
     display: flex;
     flex-direction: column;
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    input[type="number"] {
+      -moz-appearance: textfield;
+    }
     input {
       border: 1px solid $color-first;
       border-radius: 0.3rem;

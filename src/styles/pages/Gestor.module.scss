@@ -1,0 +1,93 @@
+@import "../variables.scss";
+.gestor {
+  background-color: $color-white;
+  margin: 0 auto;
+  padding: 1rem;
+  .panels {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 0.3rem;
+    gap: 0.3rem;
+    grid-template-areas:
+      "panel1 panel1"
+      "panel2 panel3";
+    @media (min-width: 768px) {
+      grid-template-areas: "panel1 panel2 panel3";
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+    .panel {
+      font-size: 0.8rem;
+      border-radius: 0.3rem;
+      padding: 0.5rem 0;
+      align-items: center;
+      display: flex;
+      background-image: linear-gradient($color-first, $text-color);
+      @media (min-width: 768px) {
+        padding: 0.8rem 0;
+      }
+      p {
+        color: $color-white;
+        span {
+          color: $color-white;
+        }
+      }
+      svg {
+        height: 25px;
+        width: 50px;
+      }
+    }
+    .panel1 {
+      grid-area: panel1;
+    }
+    .panel2 {
+      grid-area: panel2;
+    }
+    .panel3 {
+      grid-area: panel3;
+    }
+  }
+
+  .btns {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+  }
+  button {
+    width: 100%;
+    margin-bottom: 0.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 1.6rem;
+    padding: 0.2rem;
+    border-radius: 0.2rem;
+    border: none;
+    color: $color-white;
+    @media (min-width: 768px) {
+    }
+    img {
+      height: 100%;
+      margin-right: 0.3rem;
+    }
+  }
+  button:hover {
+    opacity: 0.9;
+    cursor: pointer;
+    transition: 0.4s all;
+  }
+  .btn_entry {
+    background-color: $color-first;
+    margin-right: 0.3rem;
+    .upMoney {
+      margin-right: 0.3rem;
+    }
+  }
+
+  .btn_exit {
+    background-color: $color-first;
+    .moneyspent {
+      transform: rotate(180deg);
+      margin-right: 0.3rem;
+    }
+  }
+}

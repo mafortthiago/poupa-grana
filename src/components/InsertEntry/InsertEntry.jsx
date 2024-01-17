@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "../../styles/components/InsertEntry.module.scss";
 import imgEntry from "../../assets/img/entry.png";
 import { useNavigate } from "react-router-dom";
-const InsertEntry = ({ setIsInsertEntry }) => {
+const InsertEntry = ({ setIsInsertEntry, title, action, types }) => {
   const navigate = useNavigate();
   /* Gets today's date */
   const today = new Date();
@@ -12,12 +12,10 @@ const InsertEntry = ({ setIsInsertEntry }) => {
   const [isTodaySelect, setIsTodaySelect] = useState(true);
   const [type, setType] = useState("");
   const [value, setValue] = useState(0);
+  const [description, setDescription] = useState("");
   const [isSelectionClicked, setIsSelectionClicked] = useState(true);
   const [isOtherSelectionClicked, setIsOtherSelectionClicked] = useState(false);
 
-  const closeSelection = () => {
-    setIsSelectionClicked(!isSelectionClicked);
-  };
   const handleSubmit = (e) => {
     e.preventDefault();
   };
@@ -29,7 +27,7 @@ const InsertEntry = ({ setIsInsertEntry }) => {
     <div className={styles.insert}>
       <div className={styles.modal_insert}>
         <h4>
-          <span>Inserir valor para poupar</span>
+          <span>{title}</span>
           <span
             className={styles.go_back}
             onClick={() => setIsInsertEntry(false)}
@@ -55,11 +53,22 @@ const InsertEntry = ({ setIsInsertEntry }) => {
           {/* input value */}
           <label htmlFor="value">Valor:</label>
           <input
-            type="text"
-            id={`${styles.value} `}
+            type="number"
+            step="0.01"
+            id="value"
             name="value"
             value={value}
-            onChange={(e) => setValue(parseFloat(e.target.value))}
+            onChange={(e) => {
+              const number = e.target.value;
+              setValue(number ? parseFloat(number) : "");
+            }}
+          />
+          <label htmlFor="description">Descrição:</label>
+          <input
+            type="text"
+            id="description"
+            onChange={(e) => setDescription(e.target.value)}
+            value={description}
           />
           {/* Add number buttons */}
           <div className={styles.buttons_add_value}>
@@ -115,15 +124,14 @@ const InsertEntry = ({ setIsInsertEntry }) => {
             </div>
 
             <div className={isSelectionClicked ? styles.none : styles.options}>
-              <p onClick={(e) => handleClickSelection(e.target.textContent)}>
-                Salário
-              </p>
-              <p onClick={(e) => handleClickSelection(e.target.textContent)}>
-                Extra
-              </p>
-              <p onClick={(e) => handleClickSelection(e.target.textContent)}>
-                Presente
-              </p>
+              {types.map((type) => (
+                <p
+                  key={type}
+                  onClick={(e) => handleClickSelection(e.target.textContent)}
+                >
+                  {type}
+                </p>
+              ))}
               <p
                 onClick={() =>
                   setIsOtherSelectionClicked(!isOtherSelectionClicked)
@@ -157,7 +165,7 @@ const InsertEntry = ({ setIsInsertEntry }) => {
               )}
             </div>
           </label>
-          <input type="submit" value="Inserir" className={styles.btn_insert} />
+          <input type="submit" value={action} className={styles.btn_insert} />
         </form>
       </div>
     </div>
