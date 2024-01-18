@@ -8,3 +8,9 @@
   margin: 0 auto;
   padding-left: 1rem;
 }
+.apexcharts-zoom-icon.apexcharts-selected svg {
+  fill: $text-color !important;
+}
+.apexcharts-pan-icon.apexcharts-selected svg {
+  stroke: $text-color !important;
+}

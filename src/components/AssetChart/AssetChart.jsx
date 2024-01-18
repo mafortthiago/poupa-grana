@@ -3,6 +3,9 @@ import Chart from "react-apexcharts";
 import "../../styles/components/AssetChart.scss";
 export const AssetChart = () => {
   var options = {
+    markers: {
+      colors: ["#90aa86", "#90aa86"],
+    },
     chart: {
       type: "area",
     },
@@ -34,11 +37,15 @@ export const AssetChart = () => {
       x: {
         format: "dd/MM/yy ",
       },
+      marker: {
+        fillColors: ["#90aa86"],
+        text: "Dinheiro poupado",
+      },
     },
   };
   const series = [
     {
-      name: "series1",
+      name: "Dinheiro guardado",
       data: [31, 40, 28, 51, 42, 109, 100],
     },
   ];
@@ -46,7 +53,7 @@ export const AssetChart = () => {
     <>
       <div className="asset_chart">
         <h4 className="titleChart">Sua jornada economizando:</h4>
-        <Chart options={options} series={series} type="area" height={380} />
+        <Chart options={options} series={series} type="area" height={420} />
       </div>
     </>
   );
