@@ -5,6 +5,7 @@ import { InsertEntry } from "./pages/InsertEntry/InsertEntry";
 import { InsertExit } from "./pages/InsertExit/InsertExit";
 import { Gestor } from "./pages/Gestor/Gestor";
 import "./App.scss";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path={"/Entrada"} element={<InsertEntry />} />
           <Route path={"/Saída"} element={<InsertExit />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </>
   );

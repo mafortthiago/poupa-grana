@@ -1,0 +1,70 @@
+@import "../variables.scss";
+.footer {
+  background-color: $color-second;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "about"
+    "links_container"
+    "contact"
+    "portfolio";
+  padding: 1rem;
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas:
+      "about links_container contact"
+      "portfolio portfolio portfolio";
+  }
+  .about {
+    grid-area: about;
+  }
+  .links_container {
+    grid-area: links_container;
+    margin-top: 0.5rem;
+    @media (min-width: 768px) {
+      margin: 0 auto;
+    }
+    .links {
+      display: flex;
+      flex-direction: column;
+      a {
+        color: $text-color;
+        font-weight: 600;
+        text-decoration: none;
+      }
+      a:hover {
+        filter: brightness(1.2);
+      }
+    }
+  }
+  .contact {
+    @media (min-width: 768px) {
+      margin: 0 auto;
+    }
+    grid-area: contact;
+    margin-top: 0.5rem;
+    .icon {
+      margin-top: 0.2rem;
+      width: max-content;
+      height: 30px;
+      margin-right: 1rem;
+    }
+  }
+  .portfolio {
+    grid-area: portfolio;
+    @media (min-width: 768px) {
+      margin-top: 1rem;
+    }
+    hr {
+      margin-top: 0.4rem;
+      border-color: $color-first;
+    }
+    .link_portfolio {
+      margin-top: 0.5rem;
+      display: flex;
+      justify-content: center;
+      text-decoration: none;
+      font-weight: 900;
+    }
+  }
+}
