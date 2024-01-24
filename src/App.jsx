@@ -6,6 +6,7 @@ import { InsertExit } from "./pages/InsertExit/InsertExit";
 import { Gestor } from "./pages/Gestor/Gestor";
 import "./App.scss";
 import Footer from "./components/Footer";
+import Login from "./pages/Login";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path={"/"} element={<Home />} />
           <Route path={"/Entrada"} element={<InsertEntry />} />
           <Route path={"/Saída"} element={<InsertExit />} />
+          <Route path={"/Login"} element={<Login />} />
         </Routes>
         <Footer />
       </BrowserRouter>

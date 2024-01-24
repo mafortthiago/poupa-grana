@@ -17,14 +17,14 @@ export const Navbar = () => {
         <NavLink className="link-nav" to="/">
           Home
         </NavLink>
-        <NavLink className="link-nav" to="/Entrada">
-          Inserir Entrada
-        </NavLink>
-        <NavLink className="link-nav" to="/Saída">
-          Inserir Saída
-        </NavLink>
         <NavLink className="link-nav" to="/Gestor">
           Gestor
+        </NavLink>
+        <NavLink className="link-nav" to="/login">
+          Entre
+        </NavLink>
+        <NavLink className="link-nav" to="/cadastro">
+          Cadastre-se
         </NavLink>
       </nav>
     </>
