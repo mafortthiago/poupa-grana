@@ -23,6 +23,8 @@
     width: 70%;
     height: fit-content;
     background-color: $color-third-transparent;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     box-shadow: 0px 0px 0.3rem $text-color;
     @media (min-width: 480px) {
       width: 330px;
@@ -37,32 +39,28 @@
         filter: brightness(1.5);
       }
     }
-    .input_login {
-      background-color: $color-third;
+    .input_login,
+    .input_password {
+      background-color: $color-second;
       border: 1px solid $color-first;
       border-radius: 0.2rem;
-      padding: 0.1rem 0.3rem;
+      padding: 0.2rem 0.3rem;
     }
     input:focus-visible {
       outline: none;
     }
-    .input_password {
-      background-color: $color-third;
-      border: 1px solid $color-first;
-      border-radius: 0.2rem;
-      padding: 0.1rem 0.3rem;
-    }
+
     .btn {
       margin-top: 0.3rem;
       background-color: $color-first;
       color: $color-white;
       border: none;
-      padding: 0.2rem 0.3rem;
+      padding: 0.3rem;
       border-radius: 0.2rem;
       cursor: pointer;
     }
     .btn:hover {
-      box-shadow: 0.1rem 0.1rem 1px $text-color;
+      box-shadow: 0.1rem 0.1rem 1px $color-third;
       filter: brightness(1.1);
     }
   }
