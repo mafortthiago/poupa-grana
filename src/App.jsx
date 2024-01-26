@@ -7,6 +7,7 @@ import { Gestor } from "./pages/Gestor/Gestor";
 import "./App.scss";
 import Footer from "./components/Footer";
 import Login from "./pages/Login";
+import Cadastro from "./pages/Cadastro";
 
 function App() {
   return (
@@ -16,9 +17,8 @@ function App() {
         <Routes>
           <Route path={"/Gestor"} element={<Gestor />} />
           <Route path={"/"} element={<Home />} />
-          <Route path={"/Entrada"} element={<InsertEntry />} />
-          <Route path={"/Saída"} element={<InsertExit />} />
           <Route path={"/Login"} element={<Login />} />
+          <Route path={"/cadastro"} element={<Cadastro />} />
         </Routes>
         <Footer />
       </BrowserRouter>
