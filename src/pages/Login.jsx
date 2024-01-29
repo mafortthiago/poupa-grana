@@ -8,13 +8,6 @@ const Login = () => {
     <main className={styles.login}>
       <form>
         <h3>Bem-vindo novamente!</h3>
-        <p>
-          Você é novo por aqui?
-          <br />
-          <Link to="/cadastro" className={styles.link_register}>
-            Registre-se
-          </Link>
-        </p>
         <label htmlFor="login">Login</label>
         <input
           type="text"
@@ -34,6 +27,12 @@ const Login = () => {
           placeholder="Insira sua senha"
         />
         <input type="button" value="Entrar" className={styles.btn} />
+        <p className={styles.paragraph_register}>
+          <span>Você é novo por aqui?</span>
+          <Link to="/cadastro" className={styles.link_register}>
+            Registre-se
+          </Link>
+        </p>
       </form>
     </main>
   );

@@ -50,6 +50,13 @@ const InsertEntry = ({ setIsInsertEntry, title, action, types }) => {
         </h4>
         <hr />
         <form className={styles.form} onSubmit={handleSubmit}>
+          <label htmlFor="description">Descrição:</label>
+          <input
+            type="text"
+            id="description"
+            onChange={(e) => setDescription(e.target.value)}
+            value={description}
+          />
           {/* input value */}
           <label htmlFor="value">Valor:</label>
           <input
@@ -63,13 +70,7 @@ const InsertEntry = ({ setIsInsertEntry, title, action, types }) => {
               setValue(number ? parseFloat(number) : "");
             }}
           />
-          <label htmlFor="description">Descrição:</label>
-          <input
-            type="text"
-            id="description"
-            onChange={(e) => setDescription(e.target.value)}
-            value={description}
-          />
+
           {/* Add number buttons */}
           <div className={styles.buttons_add_value}>
             <button onClick={() => setValue(value + 1)}>+1</button>

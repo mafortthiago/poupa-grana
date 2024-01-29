@@ -1,8 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Header } from "./components/Header/Header";
 import { Home } from "./pages/Home/Home";
-import { InsertEntry } from "./pages/InsertEntry/InsertEntry";
-import { InsertExit } from "./pages/InsertExit/InsertExit";
+
 import { Gestor } from "./pages/Gestor/Gestor";
 import "./App.scss";
 import Footer from "./components/Footer";

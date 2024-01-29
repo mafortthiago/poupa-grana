@@ -6,17 +6,12 @@ import { useState } from "react";
 const Cadastro = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   return (
     <main className={`${styles.login} ${styles2.login}`}>
       <form className={styles2.form}>
         <h3>Comece a poupar!</h3>
-        <p>
-          Você já tem cadastro?
-          <br />
-          <Link to="/cadastro" className={styles.link_register}>
-            Faça login
-          </Link>
-        </p>
+
         <label htmlFor="login">Login</label>
         <input
           type="text"
@@ -40,11 +35,17 @@ const Cadastro = () => {
           type="password"
           id="password"
           className={styles.input_password}
-          onChange={(e) => setPassword(e.target.value)}
-          value={password}
+          onChange={(e) => setConfirmPassword(e.target.value)}
+          value={confirmPassword}
           placeholder="Insira sua senha"
         />
         <input type="button" value="Registrar" className={styles.btn} />
+        <p>
+          <span>Você já tem cadastro?</span>
+          <Link to="/login" className={styles.link_register}>
+            Faça login
+          </Link>
+        </p>
       </form>
     </main>
   );
