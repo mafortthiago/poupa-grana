@@ -63,6 +63,9 @@
       box-shadow: 0.1rem 0.1rem 1px $color-third;
       filter: brightness(1.1);
     }
+    .error {
+      color: $color-fourth;
+    }
     p {
       display: flex;
       justify-content: space-around;

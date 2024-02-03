@@ -1,12 +1,34 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import useAuth from "../hooks/useAuth";
 import styles from "../styles/pages/Login.module.scss";
 import { Link } from "react-router-dom";
+import Alert from "../components/alert";
+import AuthContext from "../context/AuthContext";
+
 const Login = () => {
+  const { createUser, loading, error, login } = useAuth();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [isClickedAlert, setIsClickedAlert] = useState(false);
+  const [user, setUser] = useContext(AuthContext);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const userLogin = {
+      login: username,
+      password: password,
+    };
+    const user = await login(userLogin);
+
+    setUser(user);
+    if (user) {
+      setIsClickedAlert(true);
+    }
+  };
   return (
     <main className={styles.login}>
-      <form>
+      <form onSubmit={handleSubmit}>
         <h3>Bem-vindo novamente!</h3>
         <label htmlFor="login">Login</label>
         <input
@@ -26,7 +48,8 @@ const Login = () => {
           value={password}
           placeholder="Insira sua senha"
         />
-        <input type="button" value="Entrar" className={styles.btn} />
+        <input type="submit" value="Entrar" className={styles.btn} />
+        {error && <p className={styles.error}>{error.message}</p>}
         <p className={styles.paragraph_register}>
           <span>Você é novo por aqui?</span>
           <Link to="/cadastro" className={styles.link_register}>
@@ -34,6 +57,24 @@ const Login = () => {
           </Link>
         </p>
       </form>
+      {/* {error && (
+        <Alert
+          title={"Insucesso"}
+          description={error}
+          btnTitle={"Ok!"}
+          link={"/login"}
+        />
+      )} */}
+      {isClickedAlert && (
+        <Alert
+          title={"Sucesso"}
+          description={
+            "Login feito com sucesso, bem-vindo(a) novamente no poupa grana!"
+          }
+          btnTitle={"Ok!"}
+          link={"/login"}
+        />
+      )}
     </main>
   );
 };

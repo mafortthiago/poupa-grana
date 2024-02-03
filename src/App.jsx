@@ -1,7 +1,7 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { Header } from "./components/Header/Header";
 import { Home } from "./pages/Home/Home";
-
+import { AuthProvider } from "./context/AuthContext";
 import { Gestor } from "./pages/Gestor/Gestor";
 import "./App.scss";
 import Footer from "./components/Footer";
@@ -10,19 +10,45 @@ import Cadastro from "./pages/Cadastro";
 
 function App() {
   return (
-    <>
+    <AuthProvider>
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path={"/Gestor"} element={<Gestor />} />
-          <Route path={"/"} element={<Home />} />
-          <Route path={"/Login"} element={<Login />} />
-          <Route path={"/cadastro"} element={<Cadastro />} />
+          <Route
+            path={"/Gestor"}
+            element={
+              <ProtectedRoute component={Gestor} redirectTo={"/login"} />
+            }
+          />
+          <Route
+            path={"/"}
+            element={<ProtectedRoute component={Home} redirectTo={"/login"} />}
+          />
+          <Route
+            path={"/Login"}
+            element={<PublicRoute component={Login} redirectTo={"/gestor"} />}
+          />
+          <Route
+            path={"/cadastro"}
+            element={
+              <PublicRoute component={Cadastro} redirectTo={"/gestor"} />
+            }
+          />
         </Routes>
         <Footer />
       </BrowserRouter>
-    </>
+    </AuthProvider>
   );
+}
+
+function ProtectedRoute({ component: Component, redirectTo }) {
+  const localUser = JSON.parse(window.localStorage.getItem("user"));
+  return localUser ? <Component /> : <Navigate to={redirectTo} />;
+}
+
+function PublicRoute({ component: Component, redirectTo }) {
+  const localUser = JSON.parse(window.localStorage.getItem("user"));
+  return !localUser ? <Component /> : <Navigate to={redirectTo} />;
 }
 
 export default App;

@@ -33,22 +33,23 @@
       text-align: center;
       padding: 1rem;
     }
-    button {
-      margin: 0 auto;
-      background-color: $color-first;
-
-      border: none;
-      border-radius: 0.3rem;
-      padding: 0.5rem;
-      cursor: pointer;
-      min-width: 30%;
-      a {
-        text-decoration: none;
+    a {
+      display: flex;
+      align-items: center;
+      button {
         color: $color-white;
+        margin: 0 auto;
+        background-color: $color-first;
+
+        border: none;
+        border-radius: 0.3rem;
+        padding: 0.5rem;
+        cursor: pointer;
+        min-width: 30%;
       }
-    }
-    button:hover {
-      filter: brightness(1.2);
+      button:hover {
+        filter: brightness(1.2);
+      }
     }
   }
 }

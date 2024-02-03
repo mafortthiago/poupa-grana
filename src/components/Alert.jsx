@@ -7,9 +7,10 @@ const Alert = ({ title, description, btnTitle }) => {
       <div className={styles.alert}>
         <h3>{title}</h3>
         <p>{description}</p>
-        <button>
-          <Link to={"/gestor"}>{btnTitle}</Link>
-        </button>
+
+        <Link to={"/gestor"}>
+          <button>{btnTitle}</button>
+        </Link>
       </div>
     </div>
   );
