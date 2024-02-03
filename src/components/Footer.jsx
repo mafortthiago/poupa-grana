@@ -1,12 +1,16 @@
 import React from "react";
 import styles from "../styles/components/Footer.module.scss";
 import { Link } from "react-router-dom";
+//hooks
+import { useContext } from "react";
 //icones:
 import { BsLinkedin } from "react-icons/bs";
 import { BsGithub } from "react-icons/bs";
 import { BsMailbox2 } from "react-icons/bs";
-
+//user
+import AuthContext from "../context/AuthContext";
 const Footer = () => {
+  const [user] = useContext(AuthContext);
   return (
     <footer className={styles.footer}>
       <div className={styles.about}>
@@ -19,8 +23,17 @@ const Footer = () => {
       <div className={styles.links_container}>
         <h3>Links úteis</h3>
         <div className={styles.links}>
-          <Link to={"/"}>Home</Link>
-          <Link to={"/gestor"}>Gestor</Link>
+          {user ? (
+            <>
+              <Link to={"/"}>Home</Link>
+              <Link to={"/gestor"}>Gestor</Link>
+            </>
+          ) : (
+            <>
+              <Link to={"/login"}>Login</Link>
+              <Link to={"/cadastro"}>Cadastro</Link>
+            </>
+          )}
         </div>
       </div>
       <div className={styles.contact}>
