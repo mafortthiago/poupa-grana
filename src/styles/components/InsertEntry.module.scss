@@ -182,5 +182,10 @@
       filter: brightness(1.15);
       transition: 0.4s ease-in all;
     }
+    .errorMessage{
+      text-align: center;
+      color: $color-fourth;
+      font-weight: 500;
+    }
   }
 }

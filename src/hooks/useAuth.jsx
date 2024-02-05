@@ -69,6 +69,7 @@ const useAuth = () => {
     }
 
     const userLogged = {
+      id: responseData.id,
       login: data.login,
       token: token,
     };
