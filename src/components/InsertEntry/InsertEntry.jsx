@@ -2,23 +2,59 @@ import React, { useEffect, useState } from "react";
 import styles from "../../styles/components/InsertEntry.module.scss";
 import imgEntry from "../../assets/img/entry.png";
 import { useNavigate } from "react-router-dom";
+import AuthContext from "../../context/AuthContext";
+import { useContext } from "react";
+import Alert from "../Alert";
 const InsertEntry = ({ setIsInsertEntry, title, action, types }) => {
   const navigate = useNavigate();
-  /* Gets today's date */
-  const today = new Date();
-  const formattedDate = today.toISOString().split("T")[0];
+ /* Gets today's date */
+const today = new Date();
+const utcDate = Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate());
+const formattedDate = new Date(utcDate).toISOString().split("T")[0];
+const [user] = useContext(AuthContext);
+const [dateToday, setDateToday] = useState(formattedDate);
+const [isTodaySelect, setIsTodaySelect] = useState(true);
+const [type, setType] = useState("");
+const [value, setValue] = useState(0);
+const [loading, setLoading] = useState(false);
+const [description, setDescription] = useState("");
+const [isSelectionClicked, setIsSelectionClicked] = useState(true);
+const [isOtherSelectionClicked, setIsOtherSelectionClicked] = useState(false);
+const [errorMessage, setErrorMessage] = useState(null);
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  setLoading(true);
+  const date = new Date(dateToday);
 
-  const [dateToday, setDateToday] = useState(formattedDate);
-  const [isTodaySelect, setIsTodaySelect] = useState(true);
-  const [type, setType] = useState("");
-  const [value, setValue] = useState(0);
-  const [description, setDescription] = useState("");
-  const [isSelectionClicked, setIsSelectionClicked] = useState(true);
-  const [isOtherSelectionClicked, setIsOtherSelectionClicked] = useState(false);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const item = {
+    description,
+    type,
+    value : action === "Inserir" ? value : -value,
+    created_at: date.toISOString(),
+    user_id: user.id,
   };
+
+  try {
+    setErrorMessage(null);
+    const response = await fetch("http://localhost:8080/item", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": user.token,
+      },
+      body: JSON.stringify(item),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Houve um erro, tente novamente mais tarde!`);
+    }
+    setIsInsertEntry(false);
+  } catch (error) {
+    setErrorMessage(error.message);
+  } finally {
+    setLoading(false);
+  }
+};
   const handleClickSelection = (value) => {
     setType(value);
     setIsSelectionClicked(!isSelectionClicked);
@@ -73,10 +109,18 @@ const InsertEntry = ({ setIsInsertEntry, title, action, types }) => {
 
           {/* Add number buttons */}
           <div className={styles.buttons_add_value}>
-            <button onClick={() => setValue(value + 1)}>+1</button>
-            <button onClick={() => setValue(value + 10)}>+10</button>
-            <button onClick={() => setValue(value + 100)}>+100</button>
-            <button onClick={() => setValue(value + 1000)}>+1000</button>
+            <button type="button" onClick={() => setValue(value + 1)}>
+              +1
+            </button>
+            <button type="button" onClick={() => setValue(value + 10)}>
+              +10
+            </button>
+            <button type="button" onClick={() => setValue(value + 100)}>
+              +100
+            </button>
+            <button type="button" onClick={() => setValue(value + 1000)}>
+              +1000
+            </button>
           </div>
           {/* Which day? */}
           <span>Qual o dia?</span>
@@ -166,9 +210,12 @@ const InsertEntry = ({ setIsInsertEntry, title, action, types }) => {
               )}
             </div>
           </label>
-          <input type="submit" value={action} className={styles.btn_insert} />
+          {!loading && <input type="submit" value={action} className={styles.btn_insert} />}
+          {loading && <input type="submit" value={"Aguarde..."} className={styles.btn_insert} disabled/>}
+          {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
         </form>
       </div>
+       
     </div>
   );
 };

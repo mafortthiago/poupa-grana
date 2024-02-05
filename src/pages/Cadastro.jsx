@@ -6,7 +6,7 @@ import AuthContext from "../context/AuthContext";
 
 import { useState } from "react";
 import useAuth from "../hooks/useAuth";
-import Alert from "../components/alert";
+import Alert from "../components/Alert";
 const Cadastro = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
