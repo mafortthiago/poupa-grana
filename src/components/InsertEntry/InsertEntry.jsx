@@ -4,9 +4,8 @@ import imgEntry from "../../assets/img/entry.png";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
 import { useContext } from "react";
-import Alert from "../Alert";
 const InsertEntry = ({ setIsInsertEntry, title, action, types }) => {
-  const navigate = useNavigate();
+const navigate = useNavigate();
  /* Gets today's date */
 const today = new Date();
 const utcDate = Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate());

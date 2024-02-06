@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Item } from "../../components/Item/Item";
 import styles from "../../styles/pages/Gestor.module.scss";
 import { InsertEntry } from "../../components/InsertEntry/InsertEntry";
@@ -8,16 +8,41 @@ import { BsCashCoin } from "react-icons/bs";
 import { BsGraphUpArrow } from "react-icons/bs";
 import { BsGraphDownArrow } from "react-icons/bs";
 import { BsFillTriangleFill } from "react-icons/bs";
+import useItems from "../../hooks/useItems";
 
 export const Gestor = () => {
   const [isInsertEntry, setIsInsertEntry] = useState(false);
   const [isInsertExit, setIsInsertExit] = useState(false);
+
   const item1 = {
     name: "Conta de água",
     value: 160.9,
     createdAt: "16/07/2022",
   };
+  const { fetchItems } = useItems();
+  const [items, setItems] = useState([]);
 
+  useEffect(() => {
+    const getItems = async () => {
+      const data = await fetchItems();
+      setItems(data);
+    };
+
+    getItems();
+  });
+  const soma = () => {
+    let entry = 0;
+    let exit = 0;
+    items.map((item) => {
+      if (item.value > 0) {
+        entry = entry + item.value;
+      } else {
+        exit = exit + item.value;
+      }
+    });
+    exit = -exit;
+    return { entry, exit };
+  };
   const typesEntry = ["Salário", "Extra", "Presente"];
   const typesExit = ["Gastos essenciais", "Contas", "Lazer"];
 
@@ -28,19 +53,19 @@ export const Gestor = () => {
           <div className={`${styles.panel} ${styles.panel1}`}>
             <BsCashCoin className={styles.icon} fill="#d2d3ba" />
             <p>
-              Dinheiro poupado: <span> R${567}</span>
+              Dinheiro poupado: <span> R${soma().entry - soma().exit}</span>
             </p>
           </div>
           <div className={`${styles.panel} ${styles.panel2}`}>
             <BsGraphUpArrow className={styles.icon} fill="#90aa86" />
             <p>
-              Entrada: <span> R${700}</span>
+              Entrada: <span> R${soma().entry}</span>
             </p>
           </div>
           <div className={`${styles.panel} ${styles.panel3}`}>
             <BsGraphDownArrow className={styles.icon} fill="#723D46" />
             <p>
-              Saída: <span> R${700 - 567}</span>
+              Saída: <span> R${soma().exit}</span>
             </p>
           </div>
         </div>
@@ -66,7 +91,7 @@ export const Gestor = () => {
 
       <section>
         <h4>Movimentações</h4>
-        <Item item={item1} />
+        {items && items.map((item, index) => <Item key={index} item={item} />)}
       </section>
       {isInsertEntry && (
         <InsertEntry
