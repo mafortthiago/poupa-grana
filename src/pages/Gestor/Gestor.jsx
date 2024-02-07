@@ -43,6 +43,7 @@ export const Gestor = () => {
     exit = -exit;
     return { entry, exit };
   };
+
   const typesEntry = ["Salário", "Extra", "Presente"];
   const typesExit = ["Gastos essenciais", "Contas", "Lazer"];
 
@@ -99,6 +100,7 @@ export const Gestor = () => {
           title={"Inserir valor para poupar"}
           action={"Inserir"}
           types={typesEntry}
+          method={"POST"}
         />
       )}
       {isInsertExit && (
@@ -107,6 +109,7 @@ export const Gestor = () => {
           title={"Retirar valor"}
           action={"Retirar"}
           types={typesExit}
+          method={"POST"}
         />
       )}
     </main>

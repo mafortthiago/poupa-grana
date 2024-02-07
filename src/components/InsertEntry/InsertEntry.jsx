@@ -4,56 +4,88 @@ import imgEntry from "../../assets/img/entry.png";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
 import { useContext } from "react";
-const InsertEntry = ({ setIsInsertEntry, title, action, types }) => {
-const navigate = useNavigate();
- /* Gets today's date */
-const today = new Date();
-const utcDate = Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate());
-const formattedDate = new Date(utcDate).toISOString().split("T")[0];
-const [user] = useContext(AuthContext);
-const [dateToday, setDateToday] = useState(formattedDate);
-const [isTodaySelect, setIsTodaySelect] = useState(true);
-const [type, setType] = useState("");
-const [value, setValue] = useState(0);
-const [loading, setLoading] = useState(false);
-const [description, setDescription] = useState("");
-const [isSelectionClicked, setIsSelectionClicked] = useState(true);
-const [isOtherSelectionClicked, setIsOtherSelectionClicked] = useState(false);
-const [errorMessage, setErrorMessage] = useState(null);
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  setLoading(true);
-  const date = new Date(dateToday);
-
-  const item = {
-    description,
-    type,
-    value : action === "Inserir" ? value : -value,
-    created_at: date.toISOString(),
-    user_id: user.id,
-  };
-
-  try {
-    setErrorMessage(null);
-    const response = await fetch("http://localhost:8080/item", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": user.token,
-      },
-      body: JSON.stringify(item),
-    });
-
-    if (!response.ok) {
-      throw new Error(`Houve um erro, tente novamente mais tarde!`);
+const InsertEntry = ({
+  setIsInsertEntry,
+  title,
+  action,
+  types,
+  value_edit,
+  type_edit,
+  description_edit,
+  date_edit,
+  item_id,
+  method,
+}) => {
+  const navigate = useNavigate();
+  /* Gets today's date */
+  const today = new Date();
+  const utcDate = Date.UTC(
+    today.getUTCFullYear(),
+    today.getUTCMonth(),
+    today.getUTCDate()
+  );
+  const formattedDate = new Date(utcDate).toISOString().split("T")[0];
+  const [user] = useContext(AuthContext);
+  const [dateToday, setDateToday] = useState(() => {
+    if (date_edit) {
+      const [day, month, year] = date_edit.split("/");
+      return `${year}-${month}-${day}`;
+    } else {
+      return formattedDate;
     }
-    setIsInsertEntry(false);
-  } catch (error) {
-    setErrorMessage(error.message);
-  } finally {
-    setLoading(false);
-  }
-};
+  });
+  const [itemId] = useState(item_id ? `/${item_id}` : "");
+  const [isTodaySelect, setIsTodaySelect] = useState(true);
+  const [type, setType] = useState(type_edit ? type_edit : "Selecione um tipo");
+  const [value, setValue] = useState(() => {
+    if (value_edit) {
+      return value_edit;
+    } else {
+      return 0;
+    }
+  });
+
+  const [loading, setLoading] = useState(false);
+  const [description, setDescription] = useState(
+    description_edit ? description_edit : ""
+  );
+  const [isSelectionClicked, setIsSelectionClicked] = useState(true);
+  const [isOtherSelectionClicked, setIsOtherSelectionClicked] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    const date = new Date(dateToday);
+
+    const item = {
+      description,
+      type,
+      value: action === "Inserir" ? value : -value,
+      created_at: date.toISOString(),
+      user_id: user.id,
+    };
+
+    try {
+      setErrorMessage(null);
+      const response = await fetch("http://localhost:8080/item" + itemId, {
+        method: method,
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: user.token,
+        },
+        body: JSON.stringify(item),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Houve um erro, tente novamente mais tarde!`);
+      }
+      setIsInsertEntry(false);
+    } catch (error) {
+      setErrorMessage(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
   const handleClickSelection = (value) => {
     setType(value);
     setIsSelectionClicked(!isSelectionClicked);
@@ -209,12 +241,22 @@ const handleSubmit = async (e) => {
               )}
             </div>
           </label>
-          {!loading && <input type="submit" value={action} className={styles.btn_insert} />}
-          {loading && <input type="submit" value={"Aguarde..."} className={styles.btn_insert} disabled/>}
-          {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
+          {!loading && (
+            <input type="submit" value={action} className={styles.btn_insert} />
+          )}
+          {loading && (
+            <input
+              type="submit"
+              value={"Aguarde..."}
+              className={styles.btn_insert}
+              disabled
+            />
+          )}
+          {errorMessage && (
+            <p className={styles.errorMessage}>{errorMessage}</p>
+          )}
         </form>
       </div>
-       
     </div>
   );
 };

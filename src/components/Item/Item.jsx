@@ -1,9 +1,5 @@
 import { useContext, useState } from "react";
 import "../../styles/components/Item.scss";
-import imgEntry from "../../assets/img/entry.png";
-import imgExit from "../../assets/img/exit.png";
-import imgDelete from "../../assets/img/delete.png";
-import imgEdit from "../../assets/img/edit.png";
 // Import icons
 import { BsCaretDownFill } from "react-icons/bs";
 import { BsCaretUpFill } from "react-icons/bs";
@@ -11,12 +7,15 @@ import { BsFillPencilFill } from "react-icons/bs";
 import { BsTrash3Fill } from "react-icons/bs";
 //import user
 import AuthContext from "../../context/AuthContext";
+import { InsertEntry } from "../InsertEntry/InsertEntry";
 export const Item = ({ item }) => {
   const [user] = useContext(AuthContext);
-  //console.log(user);
   const [isDeleteClicked, setIsDeleteClicked] = useState(false);
+  const [isEditClicked, setIsEditClicked] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const types = ["Salário", "Contas", "Presente"];
+
   const deleteItem = async () => {
     setLoading(true);
     try {
@@ -32,7 +31,6 @@ export const Item = ({ item }) => {
       }
       setIsDeleteClicked(false);
     } catch (e) {
-      console.log(e.message);
       setError(error);
     } finally {
       setLoading(false);
@@ -53,7 +51,7 @@ export const Item = ({ item }) => {
         <div className="panel_item">
           <span>Valor: R${item.value > 0 ? item.value : -item.value}</span>
           <span>{item.created_at}</span>
-          <span>
+          <span onClick={() => setIsEditClicked(true)}>
             <BsFillPencilFill className="icon" />
           </span>
           <span onClick={() => setIsDeleteClicked(true)}>
@@ -83,6 +81,22 @@ export const Item = ({ item }) => {
               </div>
             </div>
           </div>
+        </>
+      )}
+      {isEditClicked && (
+        <>
+          <InsertEntry
+            setIsInsertEntry={setIsEditClicked}
+            title={"Editar item"}
+            action={item.value >= 0 ? "Inserir" : "Retirar"}
+            types={types}
+            value_edit={item.value >= 0 ? item.value : -item.value}
+            type_edit={item.type}
+            description_edit={item.description}
+            date_edit={item.created_at}
+            method={"PUT"}
+            item_id={item.id}
+          />
         </>
       )}
     </>
