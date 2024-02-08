@@ -1,9 +1,22 @@
 @import "../variables.scss";
 .asset_chart {
+  border-radius: 1rem;
   margin: 1rem auto;
   width: 96%;
+  height: 80%;
   grid-area: chart;
+  p {
+    padding: 1rem;
+    height: 100%;
+    border-radius: 0.5rem;
+    background-color: $color-second;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
+
 .titleChart {
   margin: 0 auto;
   padding-left: 1rem;

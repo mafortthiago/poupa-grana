@@ -1,8 +1,48 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Chart from "react-apexcharts";
 import "../../styles/components/AssetChart.scss";
+import useItems from "../../hooks/useItems";
+
 export const AssetChart = () => {
-  var options = {
+  const { fetchItems } = useItems();
+  const [items, setItems] = useState([]);
+  useEffect(() => {
+    const getItems = async () => {
+      const data = await fetchItems();
+      setItems(data);
+    };
+
+    getItems();
+  }, [fetchItems]);
+  let dateValues = {};
+  let total = 0;
+  items.sort(
+    (a, b) =>
+      new Date(a.created_at.split("/").reverse().join("-")) -
+      new Date(b.created_at.split("/").reverse().join("-"))
+  );
+  if (items.length === 0) {
+    return (
+      <div className="asset_chart">
+        <p>Quando você fizer uma movimentção aparecerá aqui no gráfico!!</p>
+      </div>
+    );
+  }
+  const oldestDate = items[0].created_at;
+  const earlierDate = new Date(oldestDate.split("/").reverse().join("-"));
+  earlierDate.setDate(earlierDate.getDate() - 3);
+  const earlierDateKey = `${earlierDate.getFullYear()}-${(
+    "0" +
+    (earlierDate.getMonth() + 1)
+  ).slice(-2)}-${("0" + earlierDate.getDate()).slice(-2)}`;
+  dateValues[earlierDateKey] = 0;
+  items.forEach((item) => {
+    let [day, month, year] = item.created_at.split("/");
+    let dateKey = `${year}-${month}-${day}`;
+    total += item.value;
+    dateValues[dateKey] = total;
+  });
+  let options = {
     markers: {
       colors: ["#90aa86", "#90aa86"],
     },
@@ -17,15 +57,7 @@ export const AssetChart = () => {
     },
     xaxis: {
       type: "datetime",
-      categories: [
-        "2018-09-19T00:00:00.000Z",
-        "2018-09-20T00:00:00.000Z",
-        "2018-09-21T00:00:00.000Z",
-        "2018-09-22T00:00:00.000Z",
-        "2018-09-23T00:00:00.000Z",
-        "2018-09-24T00:00:00.000Z",
-        "2018-09-25T00:00:00.000Z",
-      ],
+      categories: Object.keys(dateValues),
     },
     fill: {
       colors: ["#242038"],
@@ -43,12 +75,13 @@ export const AssetChart = () => {
       },
     },
   };
-  const series = [
+  let series = [
     {
       name: "Dinheiro guardado",
-      data: [31, 40, 28, 51, 42, 109, 100],
+      data: Object.values(dateValues),
     },
   ];
+
   return (
     <>
       <div className="asset_chart">
@@ -58,3 +91,5 @@ export const AssetChart = () => {
     </>
   );
 };
+
+export default AssetChart;
