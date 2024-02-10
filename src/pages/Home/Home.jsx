@@ -3,10 +3,21 @@ import "../../styles/pages/Home.scss";
 import imgEntry from "../../assets/img/entry.png";
 import imgExit from "../../assets/img/exit.png";
 import { AssetChart } from "../../components/AssetChart/AssetChart";
+import { BsFillPencilFill } from "react-icons/bs";
+import { BsFillTrash3Fill } from "react-icons/bs";
+
 import useItems from "../../hooks/useItems";
 export const Home = () => {
   const { fetchItems } = useItems();
   const [items, setItems] = useState([]);
+  const [goal, setGoal] = useState("");
+  const [tempGoal, setTempGoal] = useState("");
+  const [existsGoal, setExistsGoal] = useState(false);
+  const [isDeleteGoal, setIsDeleteGoal] = useState(false);
+  const [isEditGoal, setIsEditGoal] = useState(false);
+  const setGoalInStorage = (name, value) => {
+    localStorage.setItem(name, value);
+  };
 
   useEffect(() => {
     const getItems = async () => {
@@ -15,7 +26,18 @@ export const Home = () => {
     };
 
     getItems();
-  });
+
+    const storedMeta = localStorage.getItem("goal");
+    if (storedMeta) {
+      setGoal(storedMeta);
+      setExistsGoal(true);
+    }
+  }, []);
+  const deleteGoal = () => {
+    localStorage.removeItem("goal");
+    setGoal(null);
+    setIsDeleteGoal(false);
+  };
 
   const soma = () => {
     let value = 0;
@@ -99,22 +121,99 @@ export const Home = () => {
         </div>
       </section>
       <section className="mark">
-        <h4>Meta</h4>
+        <h4>
+          Meta
+          {goal && (
+            <div>
+              <BsFillPencilFill onClick={() => setIsEditGoal(true)} />
+              <BsFillTrash3Fill
+                className="trash"
+                onClick={() => setIsDeleteGoal(true)}
+              />
+            </div>
+          )}
+          {isDeleteGoal && (
+            <div className="container_delete_goal">
+              <div className="delete_goal">
+                <p>Excluir meta?</p>
+                <div className="buttons">
+                  <button onClick={deleteGoal}>Sim</button>
+                  <button onClick={() => setIsDeleteGoal(false)}>Não</button>
+                </div>
+              </div>
+            </div>
+          )}
+          {isEditGoal && (
+            <div className="container_edit_goal">
+              <div className="edit_goal">
+                <label htmlFor="goal">Defina uma meta de economia:</label>
+                <input
+                  step="0.01"
+                  type="number"
+                  id="goal"
+                  onChange={(e) => setTempGoal(e.target.value)}
+                />
+                <div className="buttons_edit">
+                  <button onClick={() => setIsEditGoal(false)}>Voltar</button>
+                  <button
+                    onClick={() => {
+                      setGoal(tempGoal);
+                      setGoalInStorage("goal", tempGoal);
+                      setIsEditGoal(false);
+                    }}
+                  >
+                    Editar
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+        </h4>
+
         <hr />
         <div className="mark_content">
           <h5>Progresso</h5>
-          <div className="progress">
-            <div className="progress_bar">{66 + "%"}</div>
-          </div>
-          <h5>
-            Economia desejada: <span>R${1000}</span>
-          </h5>
-          <h5>
-            Quantia economizada: <span>R${660}</span>
-          </h5>
-          <h5>
-            Faltam: <span>R${340}</span>
-          </h5>
+          {goal ? (
+            <>
+              <div className="progress">
+                <div
+                  className="progress_bar"
+                  style={{ width: `${Math.round((soma() / goal) * 100)}%` }}
+                >
+                  {Math.round((soma() / goal) * 100) + "%"}
+                </div>
+              </div>
+              <h5>
+                Economia desejada: <span>R${goal}</span>
+              </h5>
+              <h5>
+                Quantia economizada: <span>R${soma()}</span>
+              </h5>
+              <h5>
+                Faltam: <span>R${goal - soma()}</span>
+              </h5>
+            </>
+          ) : (
+            <>
+              <div className="no_goal">
+                <label htmlFor="goal">Defina uma meta de economia:</label>
+                <input
+                  step="0.01"
+                  type="number"
+                  id="goal"
+                  onChange={(e) => setTempGoal(e.target.value)}
+                />
+                <button
+                  onClick={() => {
+                    setGoal(tempGoal);
+                    setGoalInStorage("goal", tempGoal);
+                  }}
+                >
+                  Definir
+                </button>
+              </div>
+            </>
+          )}
         </div>
       </section>
     </main>
