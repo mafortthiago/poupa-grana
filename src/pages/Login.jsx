@@ -49,7 +49,8 @@ const Login = () => {
           placeholder="Insira sua senha"
         />
         <input type="submit" value="Entrar" className={styles.btn} />
-        {error && <p className={styles.error}>{error.message}</p>}
+
+        {error && <p className={styles.error}>{error}</p>}
         <p className={styles.paragraph_register}>
           <span>Você é novo por aqui?</span>
           <Link to="/cadastro" className={styles.link_register}>
@@ -57,14 +58,7 @@ const Login = () => {
           </Link>
         </p>
       </form>
-      {/* {error && (
-        <Alert
-          title={"Insucesso"}
-          description={error}
-          btnTitle={"Ok!"}
-          link={"/login"}
-        />
-      )} */}
+
       {isClickedAlert && (
         <Alert
           title={"Sucesso"}

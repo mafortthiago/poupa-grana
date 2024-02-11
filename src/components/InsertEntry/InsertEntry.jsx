@@ -56,6 +56,15 @@ const InsertEntry = ({
     e.preventDefault();
     setLoading(true);
     const date = new Date(dateToday);
+    if (
+      [description, type, value, date.toISOString(), user.id].some(
+        (field) => field === null || field === ""
+      )
+    ) {
+      setErrorMessage("Preencha todos os campos.");
+      setLoading(false);
+      return;
+    }
 
     const item = {
       description,
@@ -64,7 +73,6 @@ const InsertEntry = ({
       created_at: date.toISOString(),
       user_id: user.id,
     };
-
     try {
       setErrorMessage(null);
       const response = await fetch("http://localhost:8080/item" + itemId, {

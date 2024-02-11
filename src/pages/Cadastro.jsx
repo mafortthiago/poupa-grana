@@ -44,7 +44,7 @@ const Cadastro = () => {
       password: password,
     };
 
-    const registed = await createUser(userRegister, userLogin);
+    const registed = await createUser(userRegister);
     if (registed) {
       const loggedInUser = await login(userLogin);
       setUser(loggedInUser);
@@ -104,15 +104,6 @@ const Cadastro = () => {
           </Link>
         </p>
       </form>
-      {/* {error && (
-        <Alert
-          title={"Insucesso"}
-          description={error.message}
-          btnTitle={"Ok!"}
-          link={"/cadastro"}
-          setIsClickedAlert={setIsClickedAlert}
-        />
-      )} */}
 
       {isClickedAlert && (
         <Alert

@@ -3,15 +3,40 @@ import { createContext } from "react";
 
 const AuthContext = createContext({});
 
+function setWithExpiry(key, value) {
+  const now = new Date();
+  const item = {
+    value: value,
+    expiry: now.getTime() + 24 * 60 * 60 * 1000, // 24 horas a partir de agora
+  };
+  window.localStorage.setItem(key, JSON.stringify(item));
+}
+
+function getWithExpiry(key) {
+  const itemStr = window.localStorage.getItem(key);
+
+  if (!itemStr) {
+    return null;
+  }
+
+  const item = JSON.parse(itemStr);
+  const now = new Date();
+
+  if (now.getTime() > item.expiry) {
+    window.localStorage.removeItem(key);
+    return null;
+  }
+  return item.value;
+}
+
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(() => {
-    const localUser = window.localStorage.getItem("user");
-    return localUser ? JSON.parse(localUser) : null;
+    return getWithExpiry("user");
   });
 
   useEffect(() => {
     if (user) {
-      window.localStorage.setItem("user", JSON.stringify(user));
+      setWithExpiry("user", user);
     } else {
       window.localStorage.removeItem("user");
     }

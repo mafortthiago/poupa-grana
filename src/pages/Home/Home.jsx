@@ -128,7 +128,7 @@ export const Home = () => {
             </>
           ) : (
             <p className="paragraph_no_items">
-              Ainda não foram feitas modificações, insira um movimentação.
+              Ainda não foram feitas modificações, insira uma movimentação.
             </p>
           )}
         </div>
