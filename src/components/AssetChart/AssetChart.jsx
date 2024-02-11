@@ -24,7 +24,7 @@ export const AssetChart = () => {
   if (items.length === 0) {
     return (
       <div className="asset_chart">
-        <p>Quando você fizer uma movimentção aparecerá aqui no gráfico!!</p>
+        <p>Quando você fizer uma movimentação aparecerá aqui no gráfico!!</p>
       </div>
     );
   }

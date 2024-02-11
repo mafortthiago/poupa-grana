@@ -31,6 +31,7 @@
       font-size: 1.1rem;
     }
     span {
+      margin: 0.3rem 0;
       background-color: $color-white;
       -webkit-box-shadow: 10px 10px 38px -6px rgba(0, 0, 0, 0.75);
       -moz-box-shadow: 10px 10px 38px -6px rgba(0, 0, 0, 0.75);
@@ -51,6 +52,10 @@
     padding: 0 1rem;
     .analyst_content {
       padding: 1rem;
+      .paragraph_no_items {
+        text-align: center;
+        margin-top: 1.5rem;
+      }
     }
     .losses {
       margin-top: 0.3rem;
@@ -194,6 +199,7 @@
           justify-content: center;
           background-color: $color-third;
           color: $text-color;
+          font-weight: 700;
         }
       }
       .no_goal {
@@ -208,7 +214,7 @@
         }
         button {
           background-color: $color-third;
-          padding: 0.3rem;
+          padding: 0.325rem;
           border: none;
           border-radius: 0 0.3rem 0.3rem 0;
           font-weight: 600;

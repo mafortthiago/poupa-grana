@@ -62,7 +62,7 @@ export const Home = () => {
                 volta por cima!
               </p>
             );
-          } else if (soma() === 0 && items.length !== 0) {
+          } else if (soma() === 0) {
             return (
               <p>
                 Valor zerado, mas não se preocupe logo estará poupando bastante
@@ -85,40 +85,52 @@ export const Home = () => {
         <h4>Analista</h4>
         <hr />
         <div className="analyst_content">
-          <div className="winnings">
-            <h5>
-              <img src={imgEntry} />
-              últimos ganhos:
-            </h5>
-            {items &&
-              items.reduce((acc, item) => {
-                if (item.value > 0 && acc.length < 2) {
-                  acc.push(
-                    <p key={item.id}>
-                      R${item.value} - dia {item.created_at}
-                    </p>
-                  );
-                }
-                return acc;
-              }, [])}
-          </div>
-          <div className="losses">
-            <h5>
-              <img src={imgExit} alt="" className="losses_img" />
-              últimas perdas:
-            </h5>
-            {items &&
-              items.reduce((acc, item) => {
-                if (item.value < 0 && acc.length < 2) {
-                  acc.push(
-                    <p key={item.id}>
-                      R${-item.value} - dia {item.created_at}
-                    </p>
-                  );
-                }
-                return acc;
-              }, [])}
-          </div>
+          {items.length !== 0 ? (
+            <>
+              <div className="winnings">
+                <h5>
+                  <img src={imgEntry} />
+                  últimos ganhos:
+                </h5>
+                {items &&
+                  items.reduce((acc, item) => {
+                    if (item.value > 0 && acc.length < 2) {
+                      acc.push(
+                        <p key={item.id}>
+                          R${item.value} - dia {item.created_at}
+                        </p>
+                      );
+                    }
+                    return acc;
+                  }, [])}
+              </div>
+              <div className="losses">
+                <h5>
+                  <img
+                    src={imgExit}
+                    alt="icone que representa perdas"
+                    className="losses_img"
+                  />
+                  últimas perdas:
+                </h5>
+                {items &&
+                  items.reduce((acc, item) => {
+                    if (item.value < 0 && acc.length < 2) {
+                      acc.push(
+                        <p key={item.id}>
+                          R${-item.value} - dia {item.created_at}
+                        </p>
+                      );
+                    }
+                    return acc;
+                  }, [])}
+              </div>
+            </>
+          ) : (
+            <p className="paragraph_no_items">
+              Ainda não foram feitas modificações, insira um movimentação.
+            </p>
+          )}
         </div>
       </section>
       <section className="mark">

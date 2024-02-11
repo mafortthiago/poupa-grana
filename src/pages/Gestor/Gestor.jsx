@@ -70,8 +70,6 @@ export const Gestor = () => {
             </p>
           </div>
         </div>
-        <div></div>
-        <div></div>
       </div>
       <div className={styles.btns}>
         <button
@@ -90,9 +88,18 @@ export const Gestor = () => {
         </button>
       </div>
 
-      <section>
+      <section className={styles.movements}>
         <h4>Movimentações</h4>
         {items && items.map((item, index) => <Item key={index} item={item} />)}
+        {items.length === 0 && (
+          <div className={styles.no_items}>
+            <h5>Sem movimentações no momento</h5>
+            <p>
+              Comece a poupar! É só inserir a movimentação desejada no painel
+              acima.
+            </p>
+          </div>
+        )}
       </section>
       {isInsertEntry && (
         <InsertEntry

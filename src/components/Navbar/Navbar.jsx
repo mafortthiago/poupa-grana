@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import AuthContext from "../../context/AuthContext";
 import { NavLink } from "react-router-dom";
 import "../../styles/components/Navbar.scss";
+
 export const Navbar = () => {
   const [menuActive, setMenuActive] = useState(false);
   const [user, setUser] = useContext(AuthContext);
