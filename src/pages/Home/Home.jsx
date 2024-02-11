@@ -15,6 +15,7 @@ export const Home = () => {
   const [existsGoal, setExistsGoal] = useState(false);
   const [isDeleteGoal, setIsDeleteGoal] = useState(false);
   const [isEditGoal, setIsEditGoal] = useState(false);
+  const [isLowerValue, setIsLowerValue] = useState(false);
   const setGoalInStorage = (name, value) => {
     localStorage.setItem(name, value);
   };
@@ -154,17 +155,34 @@ export const Home = () => {
                   onChange={(e) => setTempGoal(e.target.value)}
                 />
                 <div className="buttons_edit">
-                  <button onClick={() => setIsEditGoal(false)}>Voltar</button>
                   <button
                     onClick={() => {
-                      setGoal(tempGoal);
-                      setGoalInStorage("goal", tempGoal);
                       setIsEditGoal(false);
+                      setIsLowerValue(false);
+                    }}
+                  >
+                    Voltar
+                  </button>
+                  <button
+                    onClick={() => {
+                      if (tempGoal > soma()) {
+                        setGoal(tempGoal);
+                        setGoalInStorage("goal", tempGoal);
+                        setIsEditGoal(false);
+                      } else {
+                        setIsLowerValue(true);
+                        return;
+                      }
                     }}
                   >
                     Editar
                   </button>
                 </div>
+                {isLowerValue && (
+                  <p className="warning_value">
+                    Digite uma meta com valor acima do que você possuí hoje.
+                  </p>
+                )}
               </div>
             </div>
           )}
@@ -203,14 +221,26 @@ export const Home = () => {
                   id="goal"
                   onChange={(e) => setTempGoal(e.target.value)}
                 />
+
                 <button
                   onClick={() => {
-                    setGoal(tempGoal);
-                    setGoalInStorage("goal", tempGoal);
+                    if (tempGoal > soma()) {
+                      setGoal(tempGoal);
+                      setGoalInStorage("goal", tempGoal);
+                      setIsLowerValue(false);
+                    } else {
+                      setIsLowerValue(true);
+                      return;
+                    }
                   }}
                 >
                   Definir
                 </button>
+                {isLowerValue && (
+                  <p className="warning_value">
+                    Digite uma meta com valor acima do que você possuí hoje.
+                  </p>
+                )}
               </div>
             </>
           )}
