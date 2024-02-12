@@ -13,6 +13,7 @@ export const Home = () => {
   const [goal, setGoal] = useState("");
   const [tempGoal, setTempGoal] = useState("");
   const [existsGoal, setExistsGoal] = useState(false);
+  const [isConcludedGoal, setIsConcludedGoal] = useState();
   const [isDeleteGoal, setIsDeleteGoal] = useState(false);
   const [isEditGoal, setIsEditGoal] = useState(false);
   const [isLowerValue, setIsLowerValue] = useState(false);
@@ -25,21 +26,23 @@ export const Home = () => {
       const data = await fetchItems();
       setItems(data);
     };
-
     getItems();
-
     const storedMeta = localStorage.getItem("goal");
     if (storedMeta) {
       setGoal(storedMeta);
       setExistsGoal(true);
+      if (storedMeta > goal) {
+        setIsConcludedGoal(true);
+      }
     }
   }, []);
+
   const deleteGoal = () => {
     localStorage.removeItem("goal");
     setGoal(null);
     setIsDeleteGoal(false);
+    setIsConcludedGoal(false);
   };
-
   const soma = () => {
     let value = 0;
     items.map((item) => {
@@ -145,6 +148,18 @@ export const Home = () => {
               />
             </div>
           )}
+          {isConcludedGoal && (
+            <div className="container_concluded_goal">
+              <div className="concluded_goal">
+                <p>
+                  Você concluiu sua meta de economizar
+                  <span> {goal}</span> reais.
+                </p>
+                <p>Parabéns!!!!</p>
+                <button onClick={() => deleteGoal()}>Definir nova meta</button>
+              </div>
+            </div>
+          )}
           {isDeleteGoal && (
             <div className="container_delete_goal">
               <div className="delete_goal">
@@ -208,7 +223,11 @@ export const Home = () => {
               <div className="progress">
                 <div
                   className="progress_bar"
-                  style={{ width: `${Math.round((soma() / goal) * 100)}%` }}
+                  style={
+                    soma() < goal
+                      ? { width: `${Math.round((soma() / goal) * 100)}%` }
+                      : { width: "100%" }
+                  }
                 >
                   {Math.round((soma() / goal) * 100) + "%"}
                 </div>
