@@ -251,6 +251,7 @@ export const Home = () => {
                   type="number"
                   id="goal"
                   onChange={(e) => setTempGoal(e.target.value)}
+                  className={styles.input_edit}
                 />
 
                 <button

@@ -241,11 +241,14 @@
         }
       }
       .no_goal {
-        #goal {
+        label {
+          margin-right: 0.3rem;
+        }
+        .input_edit {
           padding: 0.2rem 0.4rem;
         }
-        #goal::-webkit-inner-spin-button,
-        #goal::-webkit-outer-spin-button {
+        .inpu_edit::-webkit-inner-spin-button,
+        .input_edit::-webkit-outer-spin-button {
           -webkit-appearance: none;
           margin: 0;
           -moz-appearance: textfield;
