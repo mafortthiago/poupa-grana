@@ -1,5 +1,7 @@
+// hooks
 import { useContext, useState } from "react";
-import "../../styles/components/Item.scss";
+// style
+import styles from "../../styles/components/Item.module.scss";
 // Import icons
 import { BsCaretDownFill } from "react-icons/bs";
 import { BsCaretUpFill } from "react-icons/bs";
@@ -7,7 +9,9 @@ import { BsFillPencilFill } from "react-icons/bs";
 import { BsTrash3Fill } from "react-icons/bs";
 //import user
 import AuthContext from "../../context/AuthContext";
+//Component
 import { InsertEntry } from "../InsertEntry/InsertEntry";
+
 export const Item = ({ item }) => {
   const [user] = useContext(AuthContext);
   const [isDeleteClicked, setIsDeleteClicked] = useState(false);
@@ -15,7 +19,6 @@ export const Item = ({ item }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const types = ["Salário", "Contas", "Presente"];
-
   const deleteItem = async () => {
     setLoading(true);
     try {
@@ -38,38 +41,42 @@ export const Item = ({ item }) => {
   };
   return (
     <>
-      <div className="item">
-        <div className="title_item">
+      <div className={styles.item}>
+        <div className={styles.title_item}>
           {item.value > 0 ? (
-            <BsCaretUpFill fill="#90aa86" className="icon" />
+            <BsCaretUpFill fill="#90aa86" className={styles.icon} />
           ) : (
-            <BsCaretDownFill fill="#723D46" className="icon" />
+            <BsCaretDownFill fill="#723D46" className={styles.icon} />
           )}
           <h4>{item.description}</h4>
         </div>
 
-        <div className="panel_item">
+        <div className={styles.panel_item}>
           <span>Valor: R${item.value > 0 ? item.value : -item.value}</span>
           <span>{item.created_at}</span>
           <span onClick={() => setIsEditClicked(true)}>
-            <BsFillPencilFill className="icon" />
+            <BsFillPencilFill className={styles.icon} />
           </span>
           <span onClick={() => setIsDeleteClicked(true)}>
-            <BsTrash3Fill className="icon" />
+            <BsTrash3Fill className={styles.icon} />
           </span>
         </div>
       </div>
       {isDeleteClicked && (
         <>
-          <div className="container_delete_alert">
-            <div className="delete_alert">
+          <div className={styles.container_delete_alert}>
+            <div className={styles.delete_alert}>
               <h3>Aviso</h3>
               <p>
-                Você deseja realmente{" "}
-                <span className="text_delete">excluir</span> a movimentação
-                <span className="text_description"> {item.description}</span>?
+                Você deseja realmente
+                <span className={styles.text_delete}>excluir</span> a
+                movimentação
+                <span className={styles.text_description}>
+                  {item.description}
+                </span>
+                ?
               </p>
-              <div className="delete_buttons">
+              <div className={styles.delete_buttons}>
                 <button onClick={() => setIsDeleteClicked(false)}>Não</button>
                 {loading ? (
                   <button onClick={() => deleteItem()} disabled>

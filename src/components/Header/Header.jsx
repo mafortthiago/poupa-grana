@@ -1,16 +1,13 @@
 import React from "react";
-import "../../styles/components/Header.scss";
+import styles from "../../styles/components/Header.module.scss";
 import { Link } from "react-router-dom";
 import { Navbar } from "../Navbar/Navbar";
-import Logo from "../../assets/img/logo.png";
+
 export const Header = () => {
   return (
-    <header className="header">
+    <header className={styles.header}>
       <Link to={"/"}>
-        <h1>
-          {/* <img src={Logo} alt="Logo do site" /> */}
-          Poupa Grana
-        </h1>
+        <h1>Poupa Grana</h1>
       </Link>
       <Navbar />
     </header>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Chart from "react-apexcharts";
-import "../../styles/components/AssetChart.scss";
+import styles from "../../styles/components/AssetChart.module.scss";
 import useItems from "../../hooks/useItems";
 
 export const AssetChart = () => {
@@ -23,7 +23,7 @@ export const AssetChart = () => {
   );
   if (items.length === 0) {
     return (
-      <div className="asset_chart">
+      <div className={styles.asset_chart}>
         <p>Quando você fizer uma movimentação aparecerá aqui no gráfico!!</p>
       </div>
     );
@@ -84,8 +84,8 @@ export const AssetChart = () => {
 
   return (
     <>
-      <div className="asset_chart">
-        <h4 className="titleChart">Sua jornada economizando:</h4>
+      <div className={styles.asset_chart}>
+        <h4 className={styles.titleChart}>Sua jornada economizando:</h4>
         <Chart options={options} series={series} type="area" height={420} />
       </div>
     </>

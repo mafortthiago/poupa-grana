@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../../styles/pages/Home.scss";
+import styles from "../../styles/pages/Home.module.scss";
 import imgEntry from "../../assets/img/entry.png";
 import imgExit from "../../assets/img/exit.png";
 import { AssetChart } from "../../components/AssetChart/AssetChart";
@@ -51,8 +51,8 @@ export const Home = () => {
     return value;
   };
   return (
-    <main className="home">
-      <section className="money-value">
+    <main className={styles.home}>
+      <section className={styles.money_value}>
         <h3>Dinheiro guardado:</h3>
         <span>R$: {soma()}</span>
         {(() => {
@@ -84,13 +84,13 @@ export const Home = () => {
         })()}
       </section>
       <AssetChart />
-      <section className="analyst">
+      <section className={styles.analyst}>
         <h4>Analista</h4>
         <hr />
-        <div className="analyst_content">
+        <div className={styles.analyst_content}>
           {items.length !== 0 ? (
             <>
-              <div className="winnings">
+              <div className={styles.winnings}>
                 <h5>
                   <img src={imgEntry} />
                   últimos ganhos:
@@ -107,12 +107,12 @@ export const Home = () => {
                     return acc;
                   }, [])}
               </div>
-              <div className="losses">
+              <div className={styles.losses}>
                 <h5>
                   <img
                     src={imgExit}
                     alt="icone que representa perdas"
-                    className="losses_img"
+                    className={styles.losses_img}
                   />
                   últimas perdas:
                 </h5>
@@ -130,27 +130,27 @@ export const Home = () => {
               </div>
             </>
           ) : (
-            <p className="paragraph_no_items">
+            <p className={styles.paragraph_no_items}>
               Ainda não foram feitas modificações, insira uma movimentação.
             </p>
           )}
         </div>
       </section>
-      <section className="mark">
+      <section className={styles.mark}>
         <h4>
           Meta
           {goal && (
             <div>
               <BsFillPencilFill onClick={() => setIsEditGoal(true)} />
               <BsFillTrash3Fill
-                className="trash"
+                className={styles.trash}
                 onClick={() => setIsDeleteGoal(true)}
               />
             </div>
           )}
           {isConcludedGoal && (
-            <div className="container_concluded_goal">
-              <div className="concluded_goal">
+            <div className={styles.container_concluded_goal}>
+              <div className={styles.concluded_goal}>
                 <p>
                   Você concluiu sua meta de economizar
                   <span> {goal}</span> reais.
@@ -161,10 +161,10 @@ export const Home = () => {
             </div>
           )}
           {isDeleteGoal && (
-            <div className="container_delete_goal">
-              <div className="delete_goal">
+            <div className={styles.container_delete_goal}>
+              <div className={styles.delete_goal}>
                 <p>Excluir meta?</p>
-                <div className="buttons">
+                <div className={styles.buttons}>
                   <button onClick={deleteGoal}>Sim</button>
                   <button onClick={() => setIsDeleteGoal(false)}>Não</button>
                 </div>
@@ -172,8 +172,8 @@ export const Home = () => {
             </div>
           )}
           {isEditGoal && (
-            <div className="container_edit_goal">
-              <div className="edit_goal">
+            <div className={styles.container_edit_goal}>
+              <div className={styles.edit_goal}>
                 <label htmlFor="goal">Defina uma meta de economia:</label>
                 <input
                   step="0.01"
@@ -181,7 +181,7 @@ export const Home = () => {
                   id="goal"
                   onChange={(e) => setTempGoal(e.target.value)}
                 />
-                <div className="buttons_edit">
+                <div className={styles.buttons_edit}>
                   <button
                     onClick={() => {
                       setIsEditGoal(false);
@@ -206,7 +206,7 @@ export const Home = () => {
                   </button>
                 </div>
                 {isLowerValue && (
-                  <p className="warning_value">
+                  <p className={styles.warning_value}>
                     Digite uma meta com valor acima do que você possuí hoje.
                   </p>
                 )}
@@ -216,13 +216,13 @@ export const Home = () => {
         </h4>
 
         <hr />
-        <div className="mark_content">
+        <div className={styles.mark_content}>
           <h5>Progresso</h5>
           {goal ? (
             <>
-              <div className="progress">
+              <div className={styles.progress}>
                 <div
-                  className="progress_bar"
+                  className={styles.progress_bar}
                   style={
                     soma() < goal
                       ? { width: `${Math.round((soma() / goal) * 100)}%` }
@@ -244,7 +244,7 @@ export const Home = () => {
             </>
           ) : (
             <>
-              <div className="no_goal">
+              <div className={styles.no_goal}>
                 <label htmlFor="goal">Defina uma meta de economia:</label>
                 <input
                   step="0.01"
@@ -268,7 +268,7 @@ export const Home = () => {
                   Definir
                 </button>
                 {isLowerValue && (
-                  <p className="warning_value">
+                  <p className={styles.warning_value}>
                     Digite uma meta com valor acima do que você possuí hoje.
                   </p>
                 )}
