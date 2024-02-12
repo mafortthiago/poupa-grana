@@ -1,16 +1,16 @@
 // hooks
 import { useContext, useState } from "react";
 // style
-import styles from "../../styles/components/Item.module.scss";
+import styles from "../styles/components/Item.module.scss";
 // Import icons
 import { BsCaretDownFill } from "react-icons/bs";
 import { BsCaretUpFill } from "react-icons/bs";
 import { BsFillPencilFill } from "react-icons/bs";
 import { BsTrash3Fill } from "react-icons/bs";
 //import user
-import AuthContext from "../../context/AuthContext";
+import AuthContext from "../context/AuthContext";
 //Component
-import { InsertEntry } from "../InsertEntry/InsertEntry";
+import { InsertEntry } from "../components/InsertEntry";
 
 export const Item = ({ item }) => {
   const [user] = useContext(AuthContext);

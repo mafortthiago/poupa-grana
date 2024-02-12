@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Item } from "../../components/Item/Item";
-import styles from "../../styles/pages/Gestor.module.scss";
-import { InsertEntry } from "../../components/InsertEntry/InsertEntry";
-import imgExit from "../../assets/img/exit.png";
-//icons:
+import { Item } from "../components/Item/";
+import styles from "../styles/pages/Gestor.module.scss";
+import { InsertEntry } from "../components/InsertEntry/";
 import { BsCashCoin } from "react-icons/bs";
 import { BsGraphUpArrow } from "react-icons/bs";
 import { BsGraphDownArrow } from "react-icons/bs";
 import { BsFillTriangleFill } from "react-icons/bs";
-import useItems from "../../hooks/useItems";
+import useItems from "../hooks/useItems";
 
 export const Gestor = () => {
   const [isInsertEntry, setIsInsertEntry] = useState(false);

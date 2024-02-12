@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import styles from "../../styles/pages/Home.module.scss";
-import imgEntry from "../../assets/img/entry.png";
-import imgExit from "../../assets/img/exit.png";
-import { AssetChart } from "../../components/AssetChart/AssetChart";
+import styles from "../styles/pages/Home.module.scss";
+import imgEntry from "../assets/img/entry.png";
+import imgExit from "../assets/img/exit.png";
+import { AssetChart } from "../components/AssetChart";
 import { BsFillPencilFill } from "react-icons/bs";
 import { BsFillTrash3Fill } from "react-icons/bs";
 
-import useItems from "../../hooks/useItems";
+import useItems from "../hooks/useItems";
 export const Home = () => {
   const { fetchItems } = useItems();
   const [items, setItems] = useState([]);

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import styles from "../../styles/components/InsertEntry.module.scss";
-import imgEntry from "../../assets/img/entry.png";
+import styles from "../styles/components/InsertEntry.module.scss";
+import imgEntry from "../assets/img/entry.png";
 import { useNavigate } from "react-router-dom";
-import AuthContext from "../../context/AuthContext";
+import AuthContext from "../context/AuthContext";
 import { useContext } from "react";
 const InsertEntry = ({
   setIsInsertEntry,

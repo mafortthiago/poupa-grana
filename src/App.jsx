@@ -1,8 +1,8 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import { Header } from "./components/Header/Header";
-import { Home } from "./pages/Home/Home";
+import { Header } from "./components/Header/";
+import { Home } from "./pages/Home/";
 import { AuthProvider } from "./context/AuthContext";
-import { Gestor } from "./pages/Gestor/Gestor";
+import { Gestor } from "./pages/Gestor/";
 import "./App.scss";
 import Footer from "./components/Footer";
 import Login from "./pages/Login";

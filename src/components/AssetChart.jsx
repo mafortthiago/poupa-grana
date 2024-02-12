@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Chart from "react-apexcharts";
-import styles from "../../styles/components/AssetChart.module.scss";
-import useItems from "../../hooks/useItems";
+import styles from "../styles/components/AssetChart.module.scss";
+import useItems from "../hooks/useItems";
 
 export const AssetChart = () => {
   const { fetchItems } = useItems();
