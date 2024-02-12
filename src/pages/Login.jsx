@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import useAuth from "../hooks/useAuth";
 import styles from "../styles/pages/Login.module.scss";
 import { Link } from "react-router-dom";
-import Alert from "../components/alert";
+import Alert from "../components/Alert";
 import AuthContext from "../context/AuthContext";
 
 const Login = () => {

@@ -54,15 +54,13 @@ export const AssetChart = () => {
     },
     stroke: {
       curve: "smooth",
+      colors: ["#242038"],
     },
     xaxis: {
       type: "datetime",
       categories: Object.keys(dateValues),
     },
     fill: {
-      colors: ["#242038"],
-    },
-    stroke: {
       colors: ["#242038"],
     },
     tooltip: {
