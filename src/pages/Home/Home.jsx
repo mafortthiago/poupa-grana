@@ -31,7 +31,7 @@ export const Home = () => {
     if (storedMeta) {
       setGoal(storedMeta);
       setExistsGoal(true);
-      if (storedMeta > goal) {
+      if (soma() > goal) {
         setIsConcludedGoal(true);
       }
     }

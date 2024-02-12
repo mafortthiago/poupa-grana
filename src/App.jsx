@@ -9,7 +9,6 @@ import Login from "./pages/Login";
 import Cadastro from "./pages/Cadastro";
 
 function App() {
-  console.log(localStorage.getItem("user"));
   return (
     <AuthProvider>
       <BrowserRouter>

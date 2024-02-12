@@ -56,6 +56,9 @@ nav {
     }
     margin-top: 1rem;
   }
+  .active {
+    font-weight: 600;
+  }
   .close-menu {
     color: $color-third;
     @media (min-width: 600px) {

@@ -41,7 +41,7 @@ const InsertEntry = ({
     if (value_edit) {
       return value_edit;
     } else {
-      return 0;
+      return null;
     }
   });
 
@@ -142,7 +142,7 @@ const InsertEntry = ({
             value={value}
             onChange={(e) => {
               const number = e.target.value;
-              setValue(number ? parseFloat(number) : "");
+              setValue(number ? parseFloat(number) : null);
             }}
           />
 
