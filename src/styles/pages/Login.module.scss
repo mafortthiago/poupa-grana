@@ -71,6 +71,9 @@
       justify-content: space-around;
       margin: 0.5rem auto 0;
       font-size: 0.9rem;
+      @media (max-width: 420px) {
+        flex-direction: column;
+      }
       span {
         margin-right: 0.2rem;
       }

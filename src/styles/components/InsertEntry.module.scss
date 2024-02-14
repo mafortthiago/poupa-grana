@@ -127,12 +127,20 @@
       }
       .input_other_type {
         padding: 0.3rem;
+        width: fit-content;
         display: flex;
         align-items: center;
         justify-content: center;
         margin: 0.2rem 0 0.4rem 0;
         label {
           margin-right: 0.2rem;
+          font-size: 0.8rem;
+        }
+        input {
+          width: 100%;
+        }
+        .otherTypeBtn {
+          width: 4rem;
         }
       }
       .noRotate {
