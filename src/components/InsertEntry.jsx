@@ -75,14 +75,17 @@ const InsertEntry = ({
     };
     try {
       setErrorMessage(null);
-      const response = await fetch("http://localhost:8080/item" + itemId, {
-        method: method,
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: user.token,
-        },
-        body: JSON.stringify(item),
-      });
+      const response = await fetch(
+        "https://api-poupa-grana-production.up.railway.app/item" + itemId,
+        {
+          method: method,
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: user.token,
+          },
+          body: JSON.stringify(item),
+        }
+      );
 
       if (!response.ok) {
         throw new Error(`Houve um erro, tente novamente mais tarde!`);

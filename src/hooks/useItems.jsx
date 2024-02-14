@@ -15,7 +15,7 @@ const useItems = () => {
   const fetchItems = async () => {
     try {
       const response = await fetch(
-        `http://localhost:8080/item/user/${user.id}`,
+        `https://api-poupa-grana-production.up.railway.app/item/user/${user.id}`,
         {
           method: "GET",
           headers: {

@@ -13,35 +13,39 @@ export const AssetChart = () => {
     };
 
     getItems();
-  }, [fetchItems]);
+  }, []);
   let dateValues = {};
   let total = 0;
-  items.sort(
-    (a, b) =>
-      new Date(a.created_at.split("/").reverse().join("-")) -
-      new Date(b.created_at.split("/").reverse().join("-"))
-  );
-  if (items.length === 0) {
+  items &&
+    items.sort(
+      (a, b) =>
+        new Date(a.created_at.split("/").reverse().join("-")) -
+        new Date(b.created_at.split("/").reverse().join("-"))
+    );
+  if (items && items.length === 0) {
     return (
       <div className={styles.asset_chart}>
         <p>Quando você fizer uma movimentação aparecerá aqui no gráfico!!</p>
       </div>
     );
   }
-  const oldestDate = items[0].created_at;
-  const earlierDate = new Date(oldestDate.split("/").reverse().join("-"));
-  earlierDate.setDate(earlierDate.getDate() - 3);
-  const earlierDateKey = `${earlierDate.getFullYear()}-${(
-    "0" +
-    (earlierDate.getMonth() + 1)
-  ).slice(-2)}-${("0" + earlierDate.getDate()).slice(-2)}`;
-  dateValues[earlierDateKey] = 0;
-  items.forEach((item) => {
-    let [day, month, year] = item.created_at.split("/");
-    let dateKey = `${year}-${month}-${day}`;
-    total += item.value;
-    dateValues[dateKey] = total;
-  });
+  if (items) {
+    const oldestDate = items[0].created_at;
+    const earlierDate = new Date(oldestDate.split("/").reverse().join("-"));
+    earlierDate.setDate(earlierDate.getDate() - 3);
+    const earlierDateKey = `${earlierDate.getFullYear()}-${(
+      "0" +
+      (earlierDate.getMonth() + 1)
+    ).slice(-2)}-${("0" + earlierDate.getDate()).slice(-2)}`;
+    dateValues[earlierDateKey] = 0;
+    items.forEach((item) => {
+      let [day, month, year] = item.created_at.split("/");
+      let dateKey = `${year}-${month}-${day}`;
+      total += item.value;
+      dateValues[dateKey] = total;
+    });
+  }
+
   let options = {
     markers: {
       colors: ["#90aa86", "#90aa86"],

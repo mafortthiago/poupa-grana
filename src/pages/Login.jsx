@@ -48,7 +48,16 @@ const Login = () => {
           value={password}
           placeholder="Insira sua senha"
         />
-        <input type="submit" value="Entrar" className={styles.btn} />
+        {loading ? (
+          <input
+            type="submit"
+            value="Aguarde..."
+            className={styles.btn}
+            disabled
+          />
+        ) : (
+          <input type="submit" value="Entrar" className={styles.btn} />
+        )}
 
         {error && <p className={styles.error}>{error}</p>}
         <p className={styles.paragraph_register}>

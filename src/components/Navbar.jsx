@@ -19,10 +19,18 @@ export const Navbar = () => {
         </span>
         {user && (
           <>
-            <NavLink className="link-nav" to="/">
+            <NavLink
+              className="link-nav"
+              to="/"
+              onClick={() => setMenuActive(false)}
+            >
               Home
             </NavLink>
-            <NavLink className="link-nav" to="/gestor">
+            <NavLink
+              className="link-nav"
+              to="/gestor"
+              onClick={() => setMenuActive(false)}
+            >
               Gestor
             </NavLink>
             <NavLink
@@ -36,10 +44,18 @@ export const Navbar = () => {
         )}
         {!user && (
           <>
-            <NavLink className="link-nav" to="/login">
+            <NavLink
+              className="link-nav"
+              to="/login"
+              onClick={() => setMenuActive(false)}
+            >
               Entre
             </NavLink>
-            <NavLink className="link-nav" to="/cadastro">
+            <NavLink
+              className="link-nav"
+              to="/cadastro"
+              onClick={() => setMenuActive(false)}
+            >
               Cadastre-se
             </NavLink>
           </>

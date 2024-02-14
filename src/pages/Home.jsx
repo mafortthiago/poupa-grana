@@ -45,9 +45,10 @@ export const Home = () => {
   };
   const soma = () => {
     let value = 0;
-    items.map((item) => {
-      value += item.value;
-    });
+    items &&
+      items.map((item) => {
+        value += item.value;
+      });
     return value;
   };
   return (
@@ -88,7 +89,7 @@ export const Home = () => {
         <h4>Analista</h4>
         <hr />
         <div className={styles.analyst_content}>
-          {items.length !== 0 ? (
+          {items && items.length !== 0 ? (
             <>
               <div className={styles.winnings}>
                 <h5>

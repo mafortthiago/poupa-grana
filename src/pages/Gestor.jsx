@@ -31,13 +31,14 @@ export const Gestor = () => {
   const soma = () => {
     let entry = 0;
     let exit = 0;
-    items.map((item) => {
-      if (item.value > 0) {
-        entry = entry + item.value;
-      } else {
-        exit = exit + item.value;
-      }
-    });
+    items &&
+      items.map((item) => {
+        if (item.value > 0) {
+          entry = entry + item.value;
+        } else {
+          exit = exit + item.value;
+        }
+      });
     exit = -exit;
     return { entry, exit };
   };
@@ -89,7 +90,7 @@ export const Gestor = () => {
       <section className={styles.movements}>
         <h4>Movimentações</h4>
         {items && items.map((item, index) => <Item key={index} item={item} />)}
-        {items.length === 0 && (
+        {items && items.length === 0 && (
           <div className={styles.no_items}>
             <h5>Sem movimentações no momento</h5>
             <p>
