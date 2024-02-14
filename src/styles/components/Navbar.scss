@@ -31,7 +31,7 @@ nav {
   overflow-x: hidden;
   text-align: center;
   margin-top: 8rem;
-  display: flex;
+  display: none;
   align-items: center;
   flex-direction: column;
   z-index: 100;
@@ -78,6 +78,7 @@ nav {
 }
 .nav-mobile {
   right: 0;
+  display: flex;
   animation: anima-menu 0.5s ease-in-out;
 }
 @keyframes anima-menu {
