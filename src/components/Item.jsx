@@ -22,13 +22,16 @@ export const Item = ({ item }) => {
   const deleteItem = async () => {
     setLoading(true);
     try {
-      const response = await fetch(`http://localhost:8080/item/${item.id}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: user.token,
-        },
-      });
+      const response = await fetch(
+        `https://api-poupa-grana-production.up.railway.app/item/${item.id}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: user.token,
+          },
+        }
+      );
       if (!response.ok) {
         throw new Error("Erro ao deletar");
       }
@@ -69,10 +72,10 @@ export const Item = ({ item }) => {
               <h3>Aviso</h3>
               <p>
                 Você deseja realmente
-                <span className={styles.text_delete}>excluir</span> a
+                <span className={styles.text_delete}> excluir</span> a
                 movimentação
                 <span className={styles.text_description}>
-                  {item.description}
+                  {" " + item.description}
                 </span>
                 ?
               </p>
