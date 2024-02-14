@@ -35,7 +35,7 @@ export const Home = () => {
         setIsConcludedGoal(true);
       }
     }
-  }, []);
+  }, [fetchItems]);
 
   const deleteGoal = () => {
     localStorage.removeItem("goal");
