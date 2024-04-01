@@ -16,7 +16,7 @@ const useAuth = () => {
 
     try {
       const response = await fetch(
-        "https://api-poupa-grana-production.up.railway.app/auth/register",
+        "https://api-poupa-grana.onrender.com/auth/register",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -44,7 +44,7 @@ const useAuth = () => {
     let response;
     try {
       response = await fetch(
-        "https://api-poupa-grana-production.up.railway.app/auth/login",
+        "https://api-poupa-grana.onrender.com/auth/login",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
