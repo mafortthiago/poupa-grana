@@ -76,7 +76,7 @@ const InsertEntry = ({
     try {
       setErrorMessage(null);
       const response = await fetch(
-        "https://api-poupa-grana-production.up.railway.app/item" + itemId,
+        "https://api-poupa-grana.onrender.com/item" + itemId,
         {
           method: method,
           headers: {
