@@ -76,7 +76,7 @@ const InsertEntry = ({
     try {
       setErrorMessage(null);
       const response = await fetch(
-        "https://api-poupa-grana.onrender.com/item" + itemId,
+        "https://api-poupa-grana-3dca95b4864a.herokuapp.com/item" + itemId,
         {
           method: method,
           headers: {

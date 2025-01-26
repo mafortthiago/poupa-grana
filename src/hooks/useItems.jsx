@@ -15,7 +15,7 @@ const useItems = () => {
   const fetchItems = async () => {
     try {
       const response = await fetch(
-        `https://api-poupa-grana.onrender.com/item/user/${user.id}`,
+        `https://api-poupa-grana-3dca95b4864a.herokuapp.com/item/user/${user.id}`,
         {
           method: "GET",
           headers: {
